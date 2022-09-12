@@ -42,7 +42,7 @@ public class FinalProjectServerApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry){
-				registry.addMapping("/**").allowedMethods("*").allowedOrigins("http://localhost:3000");
+				registry.addMapping("/**").allowedMethods("*").allowedOrigins("https://josefinacresta.github.io/final_project_tb_client/");
 			}
 		};
 	}
