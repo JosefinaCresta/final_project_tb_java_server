@@ -39,7 +39,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
 
-        var userJson = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        String userJson = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
 
         Gson gson = new Gson();
         UserLoginDTO userLoginDTO = gson.fromJson(userJson, UserLoginDTO.class);

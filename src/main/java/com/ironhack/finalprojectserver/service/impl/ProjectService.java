@@ -46,7 +46,7 @@ public class ProjectService implements ProjectServiceInterface {
 
     public void update(Long id, Project project) {
         Optional<Project> foundProject = projectRepository.findById(id);
-        if(foundProject.isEmpty()){
+        if(foundProject == null){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No Project found with that ID");
         } else {
             if(!project.getTitle().isEmpty()){

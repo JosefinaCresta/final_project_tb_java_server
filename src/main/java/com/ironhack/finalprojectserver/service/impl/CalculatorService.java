@@ -39,7 +39,7 @@ public class CalculatorService implements CalculatorServiceInterface {
     @Override
     public Calculator getCalculatorById(Long id) {
         Optional<Calculator> foundCalculator = calculatorRepository.findById(id);
-        if(foundCalculator.isEmpty()){
+        if(foundCalculator == null){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No Calculator found with that ID");
         } else {
             return foundCalculator.get();
