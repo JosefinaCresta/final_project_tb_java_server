@@ -52,18 +52,20 @@ public class FinalProjectServerApplication {
 						  ClusterService clusterService, CalculatorService calculatorService,
 						  CalculatorRepository calculatorRepository){
 		return args -> {
-			userService.saveRole(new Role(1L, "ROLE_TEACHER"));
-			userService.saveRole(new Role(2L, "ROLE_STUDENT"));
+			Role teacher = new Role(1L, "ROLE_TEACHER");
+			Role student = new Role(2L, "ROLE_STUDENT");
+			userService.saveRole(teacher);
+			userService.saveRole(student);
 			userService.saveRole(new Role(3L, "ROLE_ADMIN"));
-/*
-			userService.saveUser(new User(null, "Raymond", "ray@gmail.com", "P@ssw0rd", new ArrayList<>()));
-			userService.saveUser(new User(null, "Shaun", "shaun@gmail.com", "P@ssw0rd", new ArrayList<>()));
-			userService.saveUser(new User(null, "Josefina", "jofi@gmail.com", "P@ssw0rd", new ArrayList<>()));
+
+			userService.saveUser(new User(null, "Raymond", "ray@gmail.com", "P@ssw0rd", teacher));
+			userService.saveUser(new User(null, "Shaun", "shaun@gmail.com", "P@ssw0rd", teacher));
+			userService.saveUser(new User(null, "Josefina", "jofi@gmail.com", "P@ssw0rd", student));
 
 			userService.addRoleToUser("ray@gmail.com", "ROLE_TEACHER");
 			userService.addRoleToUser("shaun@gmail.com", "ROLE_TEACHER");
 			userService.addRoleToUser("jofi@gmail.com", "ROLE_STUDENT");
-			userService.addRoleToUser("ray@gmail.com", "ROLE_ADMIN");*/
+			userService.addRoleToUser("ray@gmail.com", "ROLE_ADMIN");
 
 
 			/*calculatorService.setCalculator(new CalculatorDTO("PBE", false, "(1, 1, 1)", 3,
