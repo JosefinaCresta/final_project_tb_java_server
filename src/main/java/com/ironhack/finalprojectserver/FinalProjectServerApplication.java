@@ -42,7 +42,7 @@ public class FinalProjectServerApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry){
-				registry.addMapping("/**").allowedMethods("*").allowedOrigins("https://josefinacresta.github.io/*");
+				registry.addMapping("/**").allowedMethods("*").allowedOrigins("https://cresta-final-project-tb-react.herokuapp.com/");
 			}
 		};
 	}
