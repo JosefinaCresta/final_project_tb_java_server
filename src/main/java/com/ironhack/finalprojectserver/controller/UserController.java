@@ -17,6 +17,7 @@ public class UserController {
     @Autowired
     private UserServiceInterface userServiceInterface;
 
+    @CrossOrigin
     @GetMapping("/users")
     @ResponseStatus(HttpStatus.OK)
     public List<User> getUsers(){
@@ -29,12 +30,14 @@ public class UserController {
         userService.saveUser(user);
     }*/
 
+    @CrossOrigin
     @PostMapping("/users")
     @ResponseStatus(HttpStatus.CREATED)
     public void saveUser(@RequestBody User user) {
         userServiceInterface.saveUser(user);
     }
 
+    @CrossOrigin
     @PostMapping("/users/withRole")
     @ResponseStatus(HttpStatus.CREATED)
     public void saveUserWithRole(@RequestBody UserWithRoleDTO userSignupWithRole) {

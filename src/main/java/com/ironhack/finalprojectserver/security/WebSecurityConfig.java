@@ -41,13 +41,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean());
         customAuthenticationFilter.setFilterProcessesUrl("/api/auth/login");
+
         http.csrf().disable();
         http.cors();
+        http.requiresChannel()
+                .requestMatchers(r -> r.getHeader("X-Forwarded-Proto") != null)
+                .requiresSecure();
         http.sessionManagement().sessionCreationPolicy(STATELESS);
         http.authorizeRequests().antMatchers("/api/auth/login/**").permitAll();
         http.authorizeRequests().antMatchers("/api/auth/signup").permitAll();
         http.authorizeRequests().antMatchers("/api/auth/signup/withRole").permitAll();
-        http.authorizeRequests().antMatchers("/", "/csrf", "/v2/api-docs", "/swagger-resources/configuration/ui", "/configuration/ui", "/swagger-resources", "/swagger-resources/configuration/security", "/configuration/security", "/swagger-ui.html", "/webjars/**").permitAll();
+        http.authorizeRequests().antMatchers("/", "/csrf", "/v2/api-docs", "/swagger-resources/configuration/ui", "/configuration/ui", "/swagger-resources", "/swagger-resources/configuration/security", "/configuration/security", "/swagger-ui.html", "/webjars/**", "*", "https://josefinacresta.github.io/final_project_tb_client/").permitAll();
 
         http.authorizeRequests().antMatchers(GET, "/api/projects/**").
                 hasAnyAuthority("ROLE_TEACHER", "ROLE_STUDENT");
@@ -70,9 +74,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilter(customAuthenticationFilter);
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 
-        http.requiresChannel()
-                .requestMatchers(r -> r.getHeader("X-Forwarded-Proto") != null)
-                .requiresSecure();
+
     }
 
     @Bean

@@ -28,12 +28,14 @@ public class AuthController {
     @Autowired
     private UserRepository userRepository;
 
+    @CrossOrigin
     @PostMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED)
     public User saveUser(@RequestBody @Valid User user) {
         return userServiceInterface.saveUser(user);
     }
 
+    @CrossOrigin
     @PostMapping("/signup/withRole")
     @ResponseStatus(HttpStatus.CREATED)
     public User saveUserWithRole(@RequestBody @Valid UserWithRoleDTO userSignupWithRole) {
@@ -41,6 +43,7 @@ public class AuthController {
     }
 
 
+    @CrossOrigin
     @GetMapping("/verify")
     @ResponseStatus(HttpStatus.OK)
     public String verifyToken(Authentication authentication) {
